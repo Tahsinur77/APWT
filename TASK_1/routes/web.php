@@ -13,11 +13,11 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/home', [PagesController::class,'home'])->name('home');
+Route::get('/', [PagesController::class,'home'])->name('home');
 Route::get('/contact', [PagesController::class,'contact'])->name('contact');
 Route::get('/about us', [PagesController::class,'aboutUs'])->name('about_us');
 Route::get('/service', [PagesController::class,'service'])->name('service');

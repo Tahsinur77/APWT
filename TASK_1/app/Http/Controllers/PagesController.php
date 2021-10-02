@@ -26,8 +26,6 @@ class PagesController extends Controller
         ->with('services',$services);
     }
     public function ourTeam(){
-        $mem1 = "Sajib";
-        
         return view('pages.our team');
     }
 }
