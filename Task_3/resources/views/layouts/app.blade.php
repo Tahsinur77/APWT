@@ -8,6 +8,10 @@
   <title>Document</title>
 </head>
 <body>
+    @include('inc.topnav')
+    <div>
+      @yield('login')
+    </div>
     <div>
         @yield('product')
     </div>

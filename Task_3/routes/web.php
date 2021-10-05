@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pagesController;
+use App\Http\Controllers\customerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,9 @@ Route::get('/', function () {
 
 Route::get('/pages/product',[pagesController::class,'product'] )->name('pages.product');
 Route::post('/check',[pagesController::class,'check'] )->name('check');
+Route::get('/list',[pagesController::class,'list'])->name('list');
+Route::get('/edit/{id}/{productName}',[pagesController::class,'edit']);
+Route::post('/product/edit',[pagesController::class,'editSubmit'])->name('editSubmit');
+Route::get('/delete/{id}',[pagesController::class,'delete']);
+Route::get('/customer/login',[customerController::class,'login'])->name('customer.login');
+Route::post('/customer/validation',[customerController::class,'validation'])->name('customer.validation');
