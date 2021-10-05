@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class pagesController extends Controller
 {
@@ -22,6 +23,14 @@ class pagesController extends Controller
                 'description'=>'required'
             ]
         );
+
+        $var = new Product();
+        $var->productId = $request->id;
+        $var->productName = $request->name;
+        $var->price = $request->price;
+        $var->quantity = $request->quantity;
+        $var->description = $request->description;
+        $var->save();
 
         return "added";
     }
