@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('product')
     <table class="table table-borded">
+    <?php
+        session_start();
+        $customerName=$_SESSION['customerName'];
+        $customerPhone=$_SESSION['customerPhone'];
+    ?>
         <tr>
             <th>Product Id</th>
             <th>Name</th>

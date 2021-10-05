@@ -25,6 +25,9 @@ class customerController extends Controller
             }
         }
         if($check == true){
+            session_start();
+            $_SESSION['customerName'] = $request->customerName;
+            $_SESSION['customerPhone'] = $request->customerPhone;
             return redirect()->route('list');
         }
         else{
