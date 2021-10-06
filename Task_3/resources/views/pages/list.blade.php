@@ -3,8 +3,11 @@
     <table class="table table-borded">
     <?php
         session_start();
-        $customerName=$_SESSION['customerName'];
-        $customerPhone=$_SESSION['customerPhone'];
+        if(isset($_SESSION["customerName"])!=null){
+            $customerName=$_SESSION['customerName'];
+            $customerPhone=$_SESSION['customerPhone'];
+            echo $customerName;
+        }
     ?>
         <tr>
             <th>Product Id</th>

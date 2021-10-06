@@ -34,4 +34,13 @@ class customerController extends Controller
             return "not ok";
         }
     }
+
+
+    public function logout(){
+        session_start();
+        session_destroy();
+
+        return redirect()->route('customer.login');
+
+    }
 }
