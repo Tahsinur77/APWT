@@ -12,8 +12,13 @@
     <div>
       @yield('login')
     </div>
+
     <div>
         @yield('product')
+    </div>
+
+    <div>
+      @yield('cart')
     </div>
 </body>
 </html>

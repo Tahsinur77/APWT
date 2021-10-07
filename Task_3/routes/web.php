@@ -28,3 +28,4 @@ Route::get('/delete/{id}',[pagesController::class,'delete']);
 Route::get('/customer/login',[customerController::class,'login'])->name('customer.login');
 Route::post('/customer/validation',[customerController::class,'validation'])->name('customer.validation');
 Route::get('/customer/logout',[customerController::class,'logout'])->name('customer.logout');
+Route::get('/addtocart/{id}',[customerController::class,'addCart']);

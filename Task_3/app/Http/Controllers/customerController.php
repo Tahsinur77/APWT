@@ -43,4 +43,40 @@ class customerController extends Controller
         return redirect()->route('customer.login');
 
     }
+
+    public function addCart(Request $request){
+        $id = $request->id;
+        $product = Product::where('id',$id)->first();
+        // $var = array(
+        //     'id'=> $product->id,
+        //     'productId' => $product->productId,
+        //     'productName' => $product->productName,
+        //     'price' => $product->price,
+        //     'quantity' => $product->quantity,
+        //     'description' => $product->description
+        // );
+        $var = new Product();
+        $var->id= $product->id;
+        $var->productId = $product->productId;
+        $var->productName = $product->productName;
+        $var->price = $product->price;
+        $var->quantity = $product->quantity;
+        $var->description = $product->description;
+
+        $products = [];
+
+        session_start();
+        
+        $products[] = $var;
+
+
+
+
+        $_SESSION['cart'] = json_encode($products);
+        
+
+        return view('customer.addtocart');
+
+        //return $products;
+    }
 }
