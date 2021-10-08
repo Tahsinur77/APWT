@@ -52,38 +52,42 @@ class customerController extends Controller
     }
 
     public function addCart(Request $request){
-        $id = $request->id;
-        $product = Product::where('id',$id)->first();
-        $var = new Product();
-        $var->id= $product->id;
-        $var->productId = $product->productId;
-        $var->productName = $product->productName;
-        $var->price = $product->price;
-        $var->quantity = $product->quantity;
-        $var->description = $product->description;
-
-        $products = array();
-
         session_start();
-        
-        
+        if(isset($_SESSION['customerName']) != null){
+            $id = $request->id;
+            $product = Product::where('id',$id)->first();
+            $var = new Product();
+            $var->id= $product->id;
+            $var->productId = $product->productId;
+            $var->productName = $product->productName;
+            $var->price = $product->price;
+            $var->quantity = $product->quantity;
+            $var->description = $product->description;
 
-        if(isset($_SESSION['list'])!=null){
-            $productsArr = json_decode($_SESSION['list']);
-            $products = $productsArr;
-            array_push($products,$var);
+            $products = array();
             
+            if(isset($_SESSION['list'])!=null){
+                $productsArr = json_decode($_SESSION['list']);
+                $products = $productsArr;
+                array_push($products,$var);
+                
+            }
+            else{
+                array_push($products,$var);
+            }
+
+            $_SESSION['cart'] = json_encode($products);
+            
+
+            //return view('customer.addtocart');
+            return redirect()->route('cart');
+
+            //return $products;
         }
         else{
-            array_push($products,$var);
+            return redirect()->route('customer.login'); 
         }
 
-        $_SESSION['cart'] = json_encode($products);
         
-
-        //return view('customer.addtocart');
-        return redirect()->route('cart');
-
-        //return $products;
     }
 }
