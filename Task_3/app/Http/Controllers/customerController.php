@@ -46,8 +46,8 @@ class customerController extends Controller
 
     public function cart(){
         session_start();
-        if(isset($_SESSION['list'])!= null)
-            $_SESSION['cart'] = json_encode(json_decode($_SESSION['list']));
+        if(isset($_SESSION['cart'])!= null)
+            $_SESSION['cart'] = json_encode(json_decode($_SESSION['cart']));
         return view('customer.addtocart');
     }
 
@@ -81,7 +81,8 @@ class customerController extends Controller
         $_SESSION['cart'] = json_encode($products);
         
 
-        return view('customer.addtocart');
+        //return view('customer.addtocart');
+        return redirect()->route('cart');
 
         //return $products;
     }

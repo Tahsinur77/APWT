@@ -1,27 +1,44 @@
 @extends('layouts.app')
 @section('cart')
   <?php
-
     if(isset($_SESSION['cart'])!= null){
       $carts = $_SESSION['cart'];
       $productsArr = json_decode($carts);
 
       $_SESSION['list'] = json_encode($productsArr);
-
-      //print_r($productsArr);
-
-      foreach($productsArr as $product){
-        //print_r($product);
-        foreach($product as $x => $x_value) {
-          echo $x . " =" . $x_value;
-        }
-        echo "<br>";
-      }
-  }
-  else{
-    echo "Nothing added";
-  }
-    
-
+    }
   ?>
+@if(isset($_SESSION['cart'])!= null)
+  <table class="table table-borded">
+
+        <tr>
+            <th>Product Id</th>
+            <th>Name</th>
+            <th>price</th>
+            <th>quantity</th>
+            <th>description</th>
+
+            <th></th>
+        </tr>
+
+      @foreach($productsArr as $product)
+        <tr>
+          @foreach($product as $x => $x_value) 
+            @if($x != 'id')
+              <td>{{$x_value}}</td> 
+            @endif
+          @endforeach
+        </tr>
+      @endforeach
+  
+  </table>
+  <a class="btn btn-danger" href="/list">Add More</a>
+
+@else
+  <p>Nothing Add</p>
+  <a class="btn btn-danger" href="/list">Add</a>
+@endif
+
+
+
 @endsection
