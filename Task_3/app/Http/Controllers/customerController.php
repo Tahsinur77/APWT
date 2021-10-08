@@ -44,17 +44,16 @@ class customerController extends Controller
 
     }
 
+    public function cart(){
+        session_start();
+        if(isset($_SESSION['list'])!= null)
+            $_SESSION['cart'] = json_encode(json_decode($_SESSION['list']));
+        return view('customer.addtocart');
+    }
+
     public function addCart(Request $request){
         $id = $request->id;
         $product = Product::where('id',$id)->first();
-        // $var = array(
-        //     'id'=> $product->id,
-        //     'productId' => $product->productId,
-        //     'productName' => $product->productName,
-        //     'price' => $product->price,
-        //     'quantity' => $product->quantity,
-        //     'description' => $product->description
-        // );
         $var = new Product();
         $var->id= $product->id;
         $var->productId = $product->productId;
@@ -63,14 +62,21 @@ class customerController extends Controller
         $var->quantity = $product->quantity;
         $var->description = $product->description;
 
-        $products = [];
+        $products = array();
 
         session_start();
         
-        $products[] = $var;
+        
 
-
-
+        if(isset($_SESSION['list'])!=null){
+            $productsArr = json_decode($_SESSION['list']);
+            $products = $productsArr;
+            array_push($products,$var);
+            
+        }
+        else{
+            array_push($products,$var);
+        }
 
         $_SESSION['cart'] = json_encode($products);
         

@@ -1,27 +1,26 @@
 @extends('layouts.app')
 @section('cart')
   <?php
-    //$products = array();
-    //session_start();
 
-    $carts = $_SESSION['cart'];
-    $productsArr = json_decode($carts);
+    if(isset($_SESSION['cart'])!= null){
+      $carts = $_SESSION['cart'];
+      $productsArr = json_decode($carts);
 
-    //print_r($productsArr);
+      $_SESSION['list'] = json_encode($productsArr);
 
-    foreach($productsArr as $product){
-      foreach($product as $x => $x_value) {
-        echo "Key=" . $x . ", Value=" . $x_value;
+      //print_r($productsArr);
+
+      foreach($productsArr as $product){
+        //print_r($product);
+        foreach($product as $x => $x_value) {
+          echo $x . " =" . $x_value;
+        }
+        echo "<br>";
       }
-      echo "<br>";
-    }
-
-    // if(count($productsArr) == 0){
-    //   echo "Nothing added";
-    // }
-    // else{
-      
-    // }
+  }
+  else{
+    echo "Nothing added";
+  }
     
 
   ?>

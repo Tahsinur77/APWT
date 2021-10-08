@@ -29,3 +29,4 @@ Route::get('/customer/login',[customerController::class,'login'])->name('custome
 Route::post('/customer/validation',[customerController::class,'validation'])->name('customer.validation');
 Route::get('/customer/logout',[customerController::class,'logout'])->name('customer.logout');
 Route::get('/addtocart/{id}',[customerController::class,'addCart']);
+Route::get('/cart',[customerController::class,'cart'])->name('cart');
