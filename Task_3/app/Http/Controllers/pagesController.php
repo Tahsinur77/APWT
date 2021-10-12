@@ -9,6 +9,7 @@ class pagesController extends Controller
 {
     //
     public function product(){
+        
         return view('pages/Product');
     }
 

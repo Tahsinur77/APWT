@@ -40,5 +40,12 @@
   @endif
 
 
+  <div class="d-grid gap-4 col-2 mx-auto">
+    <a class="btn btn-primary me-md-2" href="{{route('order')}}">Order</a>
+  </div>
+
+  
+
+
 
 @endsection

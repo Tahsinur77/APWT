@@ -25,9 +25,11 @@ class customerController extends Controller
             }
         }
         if($check == true){
-            session_start();
-            $_SESSION['customerName'] = $request->customerName;
-            $_SESSION['customerPhone'] = $request->customerPhone;
+            // session_start();
+            // $_SESSION['customerName'] = $request->customerName;
+            //$_SESSION['customerPhone'] = $request->customerPhone;
+            session()->put('customerName',$request->customerName);
+            session()->put('customerPhone',$request->customerPhone);
             return redirect()->route('list');
         }
         else{
@@ -35,10 +37,10 @@ class customerController extends Controller
         }
     }
 
-
     public function logout(){
         session_start();
         session_destroy();
+        session()->flush();
 
         return redirect()->route('customer.login');
 
@@ -46,14 +48,14 @@ class customerController extends Controller
 
     public function cart(){
         session_start();
-        if(isset($_SESSION['cart'])!= null)
-            $_SESSION['cart'] = json_encode(json_decode($_SESSION['cart']));
+        if(session()->get('cart')!= null)
+            $_SESSION['cart'] = json_encode(json_decode(session('cart')));
         return view('customer.addtocart');
     }
 
     public function addCart(Request $request){
         session_start();
-        if(isset($_SESSION['customerName']) != null){
+        if(session()->get('customerName') != null){
             $id = $request->id;
             $product = Product::where('id',$id)->first();
             $var = new Product();
@@ -76,7 +78,8 @@ class customerController extends Controller
                 array_push($products,$var);
             }
 
-            $_SESSION['cart'] = json_encode($products);
+            //$_SESSION['cart'] = json_encode($products);
+            session()->put('cart',json_encode($products));
             
 
             //return view('customer.addtocart');

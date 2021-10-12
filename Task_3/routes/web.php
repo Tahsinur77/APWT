@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pagesController;
 use App\Http\Controllers\customerController;
+use App\Http\Controllers\orderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,4 @@ Route::post('/customer/validation',[customerController::class,'validation'])->na
 Route::get('/customer/logout',[customerController::class,'logout'])->name('customer.logout');
 Route::get('/addtocart/{id}',[customerController::class,'addCart']);
 Route::get('/cart',[customerController::class,'cart'])->name('cart');
+Route::get('/order',[orderController::class,'order'])->name('order');
